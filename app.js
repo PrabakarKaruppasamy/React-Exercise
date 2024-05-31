@@ -1,47 +1,53 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-/**
- *  <div id="parent">
- *  <div id="child">
- * <h1></h1>
- * </div>
- * </div> 
- * 
- * 
- * 
- * 
- * * */
+//React Element => Object => HTMLElement (render)
+const heading = React.createElement(
+  "h1",
+  { id: "heading" },
+  "This is React Element"
+);
 
-const parent = React.createElement('div', { id: "parent" },
-    [
-        React.createElement("div", { id: "child" },
-        [
-            React.createElement("h1", {}, "This is H1 Tag"),
-            React.createElement("h2", {}, "I'm an h2 tag")
-        ]
-    )
-    ],
-    // [
-    //     React.createElement("div", { id: "child2" },
-    //     [
-    //         React.createElement("h1", {}, "I'm an h1 tag"),
-    //         React.createElement("h2", {}, "I'm an h2 tag")
-    //     ]
-    // )
-    // ]
+console.log("React core.......", heading);
+
+/**JSX - is not HTML in JS. JSX is HTML like syntax or xml like syntax
+ *
+ * JSX (transpiled before it reaches the JS Engine) - PARCEL - BABEL
+ *
+ * JSX ==> React.createElement ==> ReactElement-JS Object ==> HtmlElement (render)
+ *
+ **/
+const jsxHeading = (
+  <h1 id="heading" className="head" tabIndex="1">
+    React using JSX
+  </h1>
+);
+
+/**
+ * React Component
+ * Class based Component - OLD
+ * Functional Component  - NEW
+ *
+ * ** */
+
+const Title = () => (
+    <h1 className="heading"> React Title Component</h1>
 )
 
+const HeadingComponent = () => 
+    (
+         <div id="container">
+            {/* {20*20} */ heading}
+            <Title></Title>
+         <h1>React Functional Component</h1>
+         </div>
+    );
+
+console.log("JSX..............", jsxHeading);
 
 
 
-const header = React.createElement("h1", { id: "header" }, "Hello World from React!");
+const root = ReactDOM.createRoot(document.getElementById("root"));
+//root.render(jsxHeading);
+root.render(<HeadingComponent />);
 
-//console.log("header......", header); //object
-
-console.log("Parent......", parent);
-
-const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
-
-//reactRoot.render(header);
-reactRoot.render(parent);
